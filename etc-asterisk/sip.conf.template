@@ -16,11 +16,10 @@ session-timers=refuse
 externip=
 localnet=
 
-
 [1001]
 type=friend
 host=dynamic
-secret=1001passwd
+secret=  ; enter a password
 context=default
 callerid=phone1
 nat=yes
@@ -28,15 +27,7 @@ nat=yes
 [1002]
 type=friend
 host=dynamic
-secret=1002passwd
+secret= ; enter a password
 context=default
 callerid=phone2
-nat=yes
-
-[1003]
-type=friend
-host=dynamic
-secret=1003passwd
-context=default
-callerid=phone3
 nat=yes

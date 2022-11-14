@@ -8,5 +8,4 @@ ENV TZ=US/Chicago
 RUN apt update -y \
     && apt install -y asterisk
 
-USER asterisk
 CMD /usr/sbin/asterisk -g -f -p -c -vvvvv
