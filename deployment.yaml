@@ -1,0 +1,45 @@
+# https://gist.github.com/tuannvm/0fc6e94a3759c91b1abe71c149152f77
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: asterisk
+  name: asterisk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asterisk
+  template:
+    metadata:
+      labels:
+        app: asterisk
+    spec:
+      nodeSelector:
+        agentpool: asterisk 
+      hostNetwork: true
+      containers:
+      - image: lastcoolnameleft/asterisk-simple:1
+        name: asterisk-simple
+        ports:
+        - containerPort: 5060
+        volumeMounts:
+        - name: etc-asterisk
+          mountPath: /etc/asterisk/sip.conf
+          subPath: sip.conf
+          readOnly: true
+        - name: etc-asterisk
+          mountPath: /etc/asterisk/extensions.conf
+          subPath: extensions.conf
+          readOnly: true
+      volumes:
+        - name: etc-asterisk
+          secret:
+            secretName: etc-asterisk
+            items:
+            - key: sip.conf
+              path: sip.conf
+            - key: extensions.conf
+              path: extensions.conf
+      restartPolicy: Always
+
