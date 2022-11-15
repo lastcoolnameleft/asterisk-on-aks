@@ -10,10 +10,11 @@ Asterisk uses a pool of ports to facilitate communication between the RTP client
 
 Using a separate nodepool with Public IP's enabled, we're able to connect directly to the exposed ports from the pod.
 
-## Requirements
-
+Used services/features
 * AKS Cluster
 * [Nodepool with PIP enabled](https://learn.microsoft.com/en-us/azure/aks/use-multiple-node-pools#assign-a-public-ip-per-node-for-your-node-pools)
+* Pod with `hostNetwork = true`
+* Secret overriding default `sip.conf` and `extensions.conf`
 
 ## Installation
 
